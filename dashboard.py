@@ -218,7 +218,7 @@ date_col = data_reset.columns[0]
 df_train = data_reset.rename(columns={date_col: "ds", "Close": "y"})[["ds", "y"]]
 model = Prophet()
 model.fit(df_train)
-future = model.make_future_dataframe(periods=period + 1)
+future = model.make_future_dataframe(periods=period)
 forecast = model.predict(future)
 forecast_table = forecast[forecast["ds"] >= pd.Timestamp(date.today())][
     ["ds", "yhat", "trend", "yhat_lower", "yhat_upper"]
